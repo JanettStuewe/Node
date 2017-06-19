@@ -1,0 +1,12 @@
+{
+	"name" : "nodetest",
+	"version" : "0.0.1",
+	"scripts" : {
+		"start" : "node nodetest.js"
+	},
+	"engines" : {
+		"node" : "6.9.4"
+	},
+	"dependencies" : {
+	}
+}
