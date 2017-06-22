@@ -7,35 +7,29 @@
 <link rel="stylesheet" href="Eisbar.css">
 </head>
 <body>
-	<header>
-		<nav>JANE's Eisbar</nav>
-	</header>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<main>
-	<div id="Anmeldebereich">
-		Benutzername: <input type="username" name="username"
-			value="z.B. Max Mustermann" /> Passwort: <input type="password"
-			name="pwd" value="dfgdfg" /> <input type="submit" value="Anmelden" />
-	</div>
-	<img id="eis" src="eis.gif">	
+	<!--  - ->
+	<form action="http://localhost:8100" action="https://ichmagkuchen.herokuapp.com/"method="get">
+	<!--  -->
+
+	<form id="iceform" action="https://ichmagkuchen.herokuapp.com/" method="get">
+		<header>
+			<nav>JANE's Eisbar</nav>
+		</header>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br>
+		<main>
+		<div id="Anmeldebereich">
+			Benutzername: <input type="username" name="username"
+				value="z.B. Max Mustermann" /> Passwort: <input type="password"
+				name="pwd" value="dfgdfg" /> <input type="submit" value="Anmelden" />
+		</div>
+		<img id="eis" src="eis.gif">
 		<div>
 			<!-- Darreichnugsfotm -->
 			<fieldset id="Darreichungsform">
 				<legend> Darreichungsform </legend>
 			</fieldset>
-	
+
 			<!-- Eissorten -->
 			<fieldset id="Eissorten">
 				<legend> Eissorten - je 1€ </legend>
@@ -44,51 +38,53 @@
 		<div>
 			<!-- Zusätze -->
 			<fieldset id="Zusaetze">
-			<legend> Zusätze - je 0.30€ </legend>
+				<legend> Zusätze - je 0.30€ </legend>
 			</fieldset>
-	
+
 			<!-- Lieferoptionen -->
 			<fieldset id="Lieferoptionen">
 				<legend> Lieferoptionen </legend>
 				<select name="Lieferoptionen" id="Lieferoptionen">
-				<option value="Standard">Standard</option>
-				<option value="Express">Express</option> 
+					<option value="Standard">Standard</option>
+					<option value="Express">Express</option>
 				</select>
 			</fieldset>
-	
+
 			<!--Bestelluebersicht -->
 			<fieldset id="Bestelluebersicht">
 				<legend> Bestelluebersicht </legend>
 				<p id="Warenuebersicht"></p>
 				<h4>Summe:</h4>
 				<p id="Summe"></p>
-       		</fieldset>
-	
+			</fieldset>
+
 			<!-- Kontaktdaten -->
 			<fieldset id="Kontaktdaten">
 				<legend> Kontaktdaten </legend>
-				Name
-				<input type="text" name="Name" placeholder="Mustermann" required id="Name"/>
+				Name <input type="text" name="Name" placeholder="Mustermann"
+					required id="Name" />
 				<hr />
-				Vorname
-				<input type="text" name="Vorname" placeholder="Max" required id="Vorname"/>
+				Vorname <input type="text" name="Vorname" placeholder="Max" required
+					id="Vorname" />
 				<hr />
-				Straße
-				<input type="text" name="Straße" placeholder="Friedrichsstraße 7" required id="Strasse"/>
+				Straße <input type="text" name="Straße"
+					placeholder="Friedrichsstraße 7" required id="Strasse" />
 				<hr />
-				Ort,PLZ
-				<input type="text" name="Ort, PLZ" placeholder="Furtwangen, 78120" required id="Ort,PLZ"/>
+				Ort,PLZ <input type="text" name="Ort, PLZ"
+					placeholder="Furtwangen, 78120" required id="Ort,PLZ" />
 				<hr />
-				Mail
-				<input type="email" name="Mail" placeholder="place @ between" id="Email"/>
+				Mail <input type="email" name="Mail" placeholder="place @ between"
+					id="Email" />
 			</fieldset>
-	
-			<button name="Bestellbutton" type="button" id="BestellungAbschicken">Bestellung prüfen und abschicken!</button>
+
+			<button name="Bestellbutton" type="button" id="BestellungAbschicken">Bestellung
+				prüfen und abschicken!</button>
 		</div>
-	</main>
-	<footer>
-		<img src="instagram.png"> <img src="facebook.png"> <img
-			src="skype.png">
-	</footer>
+		</form>
+		</main>
+		<footer>
+			<img src="instagram.png"> <img src="facebook.png"> <img
+				src="skype.png">
+		</footer>
 </body>
 </html>

@@ -2,38 +2,38 @@ var FormElements;
 (function (FormElements) {
     window.addEventListener("load", init);
     //Array aller Eissorten
-    var Eissorten = ["Erdbeereis", "Kiwieis", "Meloneneis", "Haselnusseis", "Giottoeis", "Zitroneneis", "Cookieeis", "Krokanteis", "Amarettoeis", "Straciatellaeis", "Pfirsicheis"];
+    var eissorten = ["Erdbeereis", "Kiwieis", "Meloneneis", "Haselnusseis", "Giottoeis", "Zitroneneis", "Cookieeis", "Krokanteis", "Amarettoeis", "Straciatellaeis", "Pfirsicheis"];
     var inputsEis = [];
     //Array aller Zusaetze
     var zusaetzeauswahl = ["Sahne", "Schokososse", "Erdbeersosse", "Streusel", "Krokant"];
     var inputsZusaetze = [];
     //Array aller Darreichungsformen
-    var Darreichungsform = ["Waffel", "Becher", "Box"];
+    var darreichungsform = ["Waffel", "Becher", "Box"];
     var inputsDarreichung = [];
     //HTMLElemente kreieren
-    var Darreichung;
-    var Eis;
-    var Zusaetze;
-    var Bestelluebersicht;
-    var Bestellbutton;
+    var darreichung;
+    var eis;
+    var zusaetze;
+    var bestelluebersicht;
+    var bestellbutton;
     function init() {
-        Eis = document.getElementById("Eissorten"); //auf Eisssorten im HTML zugreifen
-        Eis.addEventListener("change", change);
-        Zusaetze = document.getElementById("Zusaetze"); //auf Zusaetze im HTML zugreifen
-        Zusaetze.addEventListener("change", change);
-        Darreichung = document.getElementById("Darreichungsform"); //auf Darreichungsformen im HTML zugreifen
-        Darreichung.addEventListener("change", change);
-        Bestelluebersicht = document.getElementById("Bestelluebersicht"); //auf Bestelluebersicht im HTML zugreifen
-        Bestellbutton = document.getElementById("BestellungAbschicken"); //auf Bestellbutton im HTML zugreifen
-        Bestellbutton.addEventListener("click", BestellungPruefen);
+        eis = document.getElementById("Eissorten"); //auf Eisssorten im HTML zugreifen
+        eis.addEventListener("change", change);
+        zusaetze = document.getElementById("Zusaetze"); //auf Zusaetze im HTML zugreifen
+        zusaetze.addEventListener("change", change);
+        darreichung = document.getElementById("Darreichungsform"); //auf Darreichungsformen im HTML zugreifen
+        darreichung.addEventListener("change", change);
+        bestelluebersicht = document.getElementById("Bestelluebersicht"); //auf Bestelluebersicht im HTML zugreifen
+        bestellbutton = document.getElementById("BestellungAbschicken"); //auf Bestellbutton im HTML zugreifen
+        bestellbutton.addEventListener("click", BestellungPruefen);
         createEissorten();
         createZusaetze();
         createDarreichungsform();
     }
     //Input Eisssorten kreieren
     function createEissorten() {
-        for (var i = 0; i < Eissorten.length; i++) {
-            createInput(Eissorten[i]);
+        for (var i = 0; i < eissorten.length; i++) {
+            createInput(eissorten[i]);
         }
     }
     function createInput(_Eissorte) {
@@ -45,8 +45,9 @@ var FormElements;
         input.min = "0";
         input.max = "20";
         input.value = "0";
+        input.name = _Eissorte;
         label.id = _Eissorte;
-        Eis.appendChild(label);
+        eis.appendChild(label);
         inputsEis.push(input);
     }
     //Input Zusaetze kreieren
@@ -61,14 +62,15 @@ var FormElements;
         label.innerText = _Checkboxen;
         label.appendChild(input);
         input.type = "checkbox"; //Art des Inputs
+        input.name = _Checkboxen;
         label.id = _Checkboxen;
-        Zusaetze.appendChild(label);
+        zusaetze.appendChild(label);
         inputsZusaetze.push(input);
     }
     //Input Darreichungsform kreieren
     function createDarreichungsform() {
-        for (var i = 0; i < Darreichungsform.length; i++) {
-            createRadio(Darreichungsform[i]);
+        for (var i = 0; i < darreichungsform.length; i++) {
+            createRadio(darreichungsform[i]);
         }
     }
     function createRadio(_Radiobutton) {
@@ -77,28 +79,28 @@ var FormElements;
         label.innerText = _Radiobutton;
         label.appendChild(input);
         input.type = "radio"; //Art des Inputs
-        input.name = "Radiobutton";
+        input.name = "Darreichungsform";
         label.id = _Radiobutton;
-        Darreichung.appendChild(label);
+        darreichung.appendChild(label);
         inputsDarreichung.push(input);
     }
     //Zeigt ausgew�hlte Produkte mit ihren Preisen in der Bestell�bersicht an
     function changeWarenuebersicht(_summe) {
-        var BestellungUebersicht = document.getElementById("Warenuebersicht");
-        BestellungUebersicht.innerText = "";
+        var bestellungUebersicht = document.getElementById("Warenuebersicht");
+        bestellungUebersicht.innerText = "";
         for (var i = 0; i < inputsEis.length; i++) {
             if (parseInt(inputsEis[i].value) > 0) {
-                BestellungUebersicht.innerText += Eissorten[i] + " " + (parseInt(inputsEis[i].value) * 1) + "Euro" + "\n";
+                bestellungUebersicht.innerText += eissorten[i] + " " + (parseInt(inputsEis[i].value) * 1) + "Euro" + "\n";
             }
         }
         for (var i = 0; i < inputsZusaetze.length; i++) {
             if (inputsZusaetze[i].checked) {
-                BestellungUebersicht.innerText += zusaetzeauswahl[i] + " 0.30 Euro" + "\n";
+                bestellungUebersicht.innerText += zusaetzeauswahl[i] + " 0.30 Euro" + "\n";
             }
         }
         for (var i = 0; i < inputsDarreichung.length; i++) {
             if (inputsDarreichung[i].checked) {
-                BestellungUebersicht.innerText += Darreichungsform[i] + "\n";
+                bestellungUebersicht.innerText += darreichungsform[i] + "\n";
             }
         }
         //Summe wird in HTML geschrieben
@@ -119,51 +121,51 @@ var FormElements;
     }
     //Bestellung wird auf Vollstaendigkeit und Richtigkeit ueberprueft
     function BestellungPruefen() {
-        var Pruefung = ["Ups. Bitte ueberpruefen Sie ihre Eingaben! \n"];
+        var pruefung = ["Ups. Bitte ueberpruefen Sie ihre Eingaben! \n"];
         //Name
-        var Name = document.getElementById("Name");
-        if (Name.validity.valid == false) {
-            Pruefung.push("Name \n");
-            Name.style.backgroundColor = "#FFA1B0";
+        var name = document.getElementById("Name");
+        if (name.validity.valid == false) {
+            pruefung.push("Name \n");
+            name.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Name.style.backgroundColor = "white";
+            name.style.backgroundColor = "white";
         }
         //Vorname
-        var Vorname = document.getElementById("Vorname");
-        if (Vorname.validity.valid == false) {
-            Pruefung.push("Vorname \n");
-            Vorname.style.backgroundColor = "#FFA1B0";
+        var vorname = document.getElementById("Vorname");
+        if (vorname.validity.valid == false) {
+            pruefung.push("Vorname \n");
+            vorname.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Vorname.style.backgroundColor = "white";
+            vorname.style.backgroundColor = "white";
         }
         //Stra�e
-        var Strasse = document.getElementById("Strasse");
-        if (Strasse.validity.valid == false) {
-            Pruefung.push("Strasse \n");
-            Strasse.style.backgroundColor = "#FFA1B0";
+        var strasse = document.getElementById("Strasse");
+        if (strasse.validity.valid == false) {
+            pruefung.push("Strasse \n");
+            strasse.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Strasse.style.backgroundColor = "white";
+            strasse.style.backgroundColor = "white";
         }
         //Ort, PLZ
-        var OrtPLZ = document.getElementById("Ort,PLZ");
-        if (OrtPLZ.validity.valid == false) {
-            Pruefung.push("Ort, PLZ \n");
-            OrtPLZ.style.backgroundColor = "#FFA1B0";
+        var ortPLZ = document.getElementById("Ort,PLZ");
+        if (ortPLZ.validity.valid == false) {
+            pruefung.push("Ort, PLZ \n");
+            ortPLZ.style.backgroundColor = "#FFA1B0";
         }
         else {
-            OrtPLZ.style.backgroundColor = "white";
+            ortPLZ.style.backgroundColor = "white";
         }
         //Email
-        var Mail = document.getElementById("Email");
-        if (Mail.validity.valid == false) {
-            Pruefung.push("Email \n");
-            Mail.style.backgroundColor = "#FFA1B0";
+        var mail = document.getElementById("Email");
+        if (mail.validity.valid == false) {
+            pruefung.push("Email \n");
+            mail.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Mail.style.backgroundColor = "white";
+            mail.style.backgroundColor = "white";
         }
         //Eisanzahl
         var kugelanzahl = 0;
@@ -172,30 +174,29 @@ var FormElements;
                 kugelanzahl += 1;
         }
         if (kugelanzahl == 0)
-            Pruefung.push("Eissorten\n");
+            pruefung.push("Eissorten\n");
         //Zusaetze
-        var Zusaetze = 0;
+        var zusaetze = 0;
         for (var i = 0; i < inputsZusaetze.length; i++) {
             if (inputsZusaetze[i].checked)
-                Zusaetze += 1;
+                zusaetze += 1;
         }
-        if (Zusaetze == 0)
-            Pruefung.push("Zusaetze\n");
+        if (zusaetze == 0)
+            pruefung.push("Zusaetze\n");
         //Darreichungsform
-        var Darreichung = 0;
+        var darreichung = 0;
         for (var i = 0; i < inputsDarreichung.length; i++) {
             if (inputsDarreichung[i].checked)
-                Darreichung += 1;
+                darreichung += 1;
         }
-        if (Darreichung == 0)
-            Pruefung.push("Darreichungsform");
-        if (Pruefung.length > 0) {
-            for (var i = 0; i < Pruefung.length; i++)
-                Pruefung.push;
-            alert(Pruefung.join(""));
+        if (darreichung == 0)
+            pruefung.push("Darreichungsform");
+        if (pruefung.length > 1) {
+            alert(pruefung.join(""));
         }
         else {
             alert("Danke f�r Ihre Bestellung. Besuchen Sie uns bald wieder, wir wuerden uns freuen! :)");
+            document.getElementById("iceform").submit();
         }
     }
 })(FormElements || (FormElements = {}));

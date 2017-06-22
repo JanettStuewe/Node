@@ -2,7 +2,7 @@ namespace FormElements {
     window.addEventListener("load", init);
 
     //Array aller Eissorten
-    let Eissorten: string[] = ["Erdbeereis", "Kiwieis", "Meloneneis", "Haselnusseis", "Giottoeis", "Zitroneneis", "Cookieeis", "Krokanteis", "Amarettoeis", "Straciatellaeis", "Pfirsicheis"];
+    let eissorten: string[] = ["Erdbeereis", "Kiwieis", "Meloneneis", "Haselnusseis", "Giottoeis", "Zitroneneis", "Cookieeis", "Krokanteis", "Amarettoeis", "Straciatellaeis", "Pfirsicheis"];
     let inputsEis: HTMLInputElement[] = [];
 
     //Array aller Zusaetze
@@ -10,31 +10,30 @@ namespace FormElements {
     let inputsZusaetze: HTMLInputElement[] = [];
 
     //Array aller Darreichungsformen
-    let Darreichungsform: string[] = ["Waffel", "Becher", "Box"];
+    let darreichungsform: string[] = ["Waffel", "Becher", "Box"];
     let inputsDarreichung: HTMLInputElement[] = [];
 
     //HTMLElemente kreieren
-    let Darreichung: HTMLElement;
-    let Eis: HTMLElement;
-    let Zusaetze: HTMLElement;
-    let Bestelluebersicht: HTMLElement;
-    let Bestellbutton: HTMLElement;
+    let darreichung: HTMLElement;
+    let eis: HTMLElement;
+    let zusaetze: HTMLElement;
+    let bestelluebersicht: HTMLElement;
+    let bestellbutton: HTMLElement;
 
 
     function init(): void {
-        Eis = document.getElementById("Eissorten"); //auf Eisssorten im HTML zugreifen
-        Eis.addEventListener("change", change);
+        eis = document.getElementById("Eissorten"); //auf Eisssorten im HTML zugreifen
+        eis.addEventListener("change", change);
+        zusaetze = document.getElementById("Zusaetze"); //auf Zusaetze im HTML zugreifen
+        zusaetze.addEventListener("change", change);
 
-        Zusaetze = document.getElementById("Zusaetze");//auf Zusaetze im HTML zugreifen
-        Zusaetze.addEventListener("change", change);
+        darreichung = document.getElementById("Darreichungsform"); //auf Darreichungsformen im HTML zugreifen
+        darreichung.addEventListener("change", change);
 
-        Darreichung = document.getElementById("Darreichungsform");//auf Darreichungsformen im HTML zugreifen
-        Darreichung.addEventListener("change", change);
+        bestelluebersicht = document.getElementById("Bestelluebersicht"); //auf Bestelluebersicht im HTML zugreifen
 
-        Bestelluebersicht = document.getElementById("Bestelluebersicht");//auf Bestelluebersicht im HTML zugreifen
-
-        Bestellbutton = document.getElementById("BestellungAbschicken");//auf Bestellbutton im HTML zugreifen
-        Bestellbutton.addEventListener("click", BestellungPruefen);
+        bestellbutton = document.getElementById("BestellungAbschicken"); //auf Bestellbutton im HTML zugreifen
+        bestellbutton.addEventListener("click", BestellungPruefen);
 
         createEissorten();
         createZusaetze();
@@ -44,8 +43,8 @@ namespace FormElements {
 
     //Input Eisssorten kreieren
     function createEissorten(): void {
-        for (let i: number = 0; i < Eissorten.length; i++) {
-            createInput(Eissorten[i]);
+        for (let i: number = 0; i < eissorten.length; i++) {
+            createInput(eissorten[i]);
         }
     }
     function createInput(_Eissorte: string): void {
@@ -57,8 +56,9 @@ namespace FormElements {
         input.min = "0";
         input.max = "20";
         input.value = "0";
+        input.name = _Eissorte;
         label.id = _Eissorte;
-        Eis.appendChild(label);
+        eis.appendChild(label);
         inputsEis.push(input);
     }
 
@@ -74,15 +74,16 @@ namespace FormElements {
         label.innerText = _Checkboxen;
         label.appendChild(input);
         input.type = "checkbox"; //Art des Inputs
+        input.name = _Checkboxen;
         label.id = _Checkboxen;
-        Zusaetze.appendChild(label);
+        zusaetze.appendChild(label);
         inputsZusaetze.push(input);
     }
 
     //Input Darreichungsform kreieren
     function createDarreichungsform(): void {
-        for (let i: number = 0; i < Darreichungsform.length; i++) {
-            createRadio(Darreichungsform[i]);
+        for (let i: number = 0; i < darreichungsform.length; i++) {
+            createRadio(darreichungsform[i]);
         }
     }
     function createRadio(_Radiobutton: string): void {
@@ -91,33 +92,33 @@ namespace FormElements {
         label.innerText = _Radiobutton;
         label.appendChild(input);
         input.type = "radio"; //Art des Inputs
-        input.name = "Radiobutton";
+        input.name = "Darreichungsform";
         label.id = _Radiobutton;
-        Darreichung.appendChild(label);
+        darreichung.appendChild(label);
         inputsDarreichung.push(input);
     }
 
 
     //Zeigt ausgewählte Produkte mit ihren Preisen in der Bestellübersicht an
     function changeWarenuebersicht(_summe: number): void {
-        let BestellungUebersicht: HTMLElement = document.getElementById("Warenuebersicht");
-        BestellungUebersicht.innerText = "";
+        let bestellungUebersicht: HTMLElement = document.getElementById("Warenuebersicht");
+        bestellungUebersicht.innerText = "";
 
         for (let i: number = 0; i < inputsEis.length; i++) {
             if (parseInt(inputsEis[i].value) > 0) {
-                BestellungUebersicht.innerText += Eissorten[i] + " " + (parseInt(inputsEis[i].value) * 1) + "Euro" + "\n";
+                bestellungUebersicht.innerText += eissorten[i] + " " + (parseInt(inputsEis[i].value) * 1) + "Euro" + "\n";
             }
         }
 
         for (let i: number = 0; i < inputsZusaetze.length; i++) {
             if (inputsZusaetze[i].checked) {
-                BestellungUebersicht.innerText += zusaetzeauswahl[i] + " 0.30 Euro" + "\n";
+                bestellungUebersicht.innerText += zusaetzeauswahl[i] + " 0.30 Euro" + "\n";
             }
         }
 
         for (let i: number = 0; i < inputsDarreichung.length; i++) {
             if (inputsDarreichung[i].checked) {
-                BestellungUebersicht.innerText += Darreichungsform[i] + "\n";
+                bestellungUebersicht.innerText += darreichungsform[i] + "\n";
             }
         }
 
@@ -133,8 +134,8 @@ namespace FormElements {
             summe += parseInt(inputsEis[i].value); // Preis wird immer der Summer addiert oder subtrahiert, wenn die Zahl im Inputfeld verändert wird
         }
         for (let i: number = 0; i < inputsZusaetze.length; i++) {
-            if (inputsZusaetze[i].checked) //Preis wird immer der Summer addiert oder subtrahiert, wenn ein Zusatz im Inputfeld angeklickt wird
-            { summe += 0.30; }
+            if (inputsZusaetze[i].checked) { //Preis wird immer der Summer addiert oder subtrahiert, wenn ein Zusatz im Inputfeld angeklickt wird
+             summe += 0.30; }
         }
         changeWarenuebersicht(summe);
     }
@@ -142,56 +143,56 @@ namespace FormElements {
 
     //Bestellung wird auf Vollstaendigkeit und Richtigkeit ueberprueft
     function BestellungPruefen(): void {
-        let Pruefung: string[] = ["Ups. Bitte ueberpruefen Sie ihre Eingaben! \n"];
+        let pruefung: string[] = ["Ups. Bitte ueberpruefen Sie ihre Eingaben! \n"];
 
         //Name
-        let Name: HTMLInputElement = <HTMLInputElement>document.getElementById("Name");
-        if (Name.validity.valid == false) {
-            Pruefung.push("Name \n");
-            Name.style.backgroundColor = "#FFA1B0";
+        let name: HTMLInputElement = <HTMLInputElement>document.getElementById("Name");
+        if (name.validity.valid == false) {
+            pruefung.push("Name \n");
+            name.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Name.style.backgroundColor = "white";
+            name.style.backgroundColor = "white";
         }
 
         //Vorname
-        let Vorname: HTMLInputElement = <HTMLInputElement>document.getElementById("Vorname");
-        if (Vorname.validity.valid == false) {
-            Pruefung.push("Vorname \n")
-            Vorname.style.backgroundColor = "#FFA1B0";
+        let vorname: HTMLInputElement = <HTMLInputElement>document.getElementById("Vorname");
+        if (vorname.validity.valid == false) {
+            pruefung.push("Vorname \n");
+            vorname.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Vorname.style.backgroundColor = "white";
+            vorname.style.backgroundColor = "white";
         }
 
         //Straße
-        let Strasse: HTMLInputElement = <HTMLInputElement>document.getElementById("Strasse");
-        if (Strasse.validity.valid == false) {
-            Pruefung.push("Strasse \n");
-            Strasse.style.backgroundColor = "#FFA1B0";
+        let strasse: HTMLInputElement = <HTMLInputElement>document.getElementById("Strasse");
+        if (strasse.validity.valid == false) {
+            pruefung.push("Strasse \n");
+            strasse.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Strasse.style.backgroundColor = "white";
+            strasse.style.backgroundColor = "white";
         }
 
         //Ort, PLZ
-        let OrtPLZ: HTMLInputElement = <HTMLInputElement>document.getElementById("Ort,PLZ");
-        if (OrtPLZ.validity.valid == false) {
-            Pruefung.push("Ort, PLZ \n");
-            OrtPLZ.style.backgroundColor = "#FFA1B0";
+        let ortPLZ: HTMLInputElement = <HTMLInputElement>document.getElementById("Ort,PLZ");
+        if (ortPLZ.validity.valid == false) {
+            pruefung.push("Ort, PLZ \n");
+            ortPLZ.style.backgroundColor = "#FFA1B0";
         }
         else {
-            OrtPLZ.style.backgroundColor = "white";
+            ortPLZ.style.backgroundColor = "white";
         }
 
         //Email
-        let Mail: HTMLInputElement = <HTMLInputElement>document.getElementById("Email");
-        if (Mail.validity.valid == false) {
-            Pruefung.push("Email \n");
-            Mail.style.backgroundColor = "#FFA1B0";
+        let mail: HTMLInputElement = <HTMLInputElement>document.getElementById("Email");
+        if (mail.validity.valid == false) {
+            pruefung.push("Email \n");
+            mail.style.backgroundColor = "#FFA1B0";
         }
         else {
-            Mail.style.backgroundColor = "white";
+            mail.style.backgroundColor = "white";
         }
 
         //Eisanzahl
@@ -201,33 +202,32 @@ namespace FormElements {
                 kugelanzahl += 1;
         }
         if (kugelanzahl == 0)
-            Pruefung.push("Eissorten\n");
+            pruefung.push("Eissorten\n");
 
         //Zusaetze
-        let Zusaetze: number = 0;
+        let zusaetze: number = 0;
         for (let i: number = 0; i < inputsZusaetze.length; i++) {
             if (inputsZusaetze[i].checked)
-                Zusaetze += 1;
+                zusaetze += 1;
         }
-        if (Zusaetze == 0)
-            Pruefung.push("Zusaetze\n");
+        if (zusaetze == 0)
+            pruefung.push("Zusaetze\n");
 
         //Darreichungsform
-        let Darreichung: number = 0;
+        let darreichung: number = 0;
         for (let i: number = 0; i < inputsDarreichung.length; i++) {
             if (inputsDarreichung[i].checked)
-                Darreichung += 1;
+                darreichung += 1;
         }
-        if (Darreichung == 0)
-            Pruefung.push("Darreichungsform");
+        if (darreichung == 0)
+            pruefung.push("Darreichungsform");
 
-        if (Pruefung.length > 0) {
-            for (let i: number = 0; i < Pruefung.length; i++)
-                Pruefung.push
-            alert(Pruefung.join(""));
+        if (pruefung.length > 1) {
+            alert(pruefung.join(""));
         }
         else {
             alert("Danke für Ihre Bestellung. Besuchen Sie uns bald wieder, wir wuerden uns freuen! :)");
+            (<HTMLFormElement>document.getElementById("iceform")).submit();
         }
     }
 }
