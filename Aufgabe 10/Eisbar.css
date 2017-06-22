@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Niconne');
+
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+title {
+	display: none;
+}
+
+
+html {
+	background-color: #FFA1B0;
+	height: 100%;
+	width: 100%;
+	font-family: 'Niconne', cursive;
+}
+
+body {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+main {
+	background-color: #FFEBC0; //
+	font-family: Droid Sans, Arial, sans-serif;
+	color: #888;
+	font-size: 20px;
+	line-height: 1.5;
+	position: relative;
+	font-weight: 400;
+}
+
+nav { 
+	font-family: 'Anton', sans-serif;
+	font-size: 30px;
+}
+
+	/*sticky Menueleiste Kopfbereich*/
+	header /*beschreibt Headerbox*/ {
+		z-index: 2; /*hebt den Header vor alles*/
+		display: block;
+		float: left;
+		height: 6%; /*gibt die hoehe (Ausmasse) des headers an */
+		background: rgba(255, 161, 176, .9);
+		/*macht den hintergrund schwarz und transparent*/
+		color: #FFFFFF; /*macht die schrift weiss vom header*/
+		position: fixed;
+		/*gibt an, das der Kopf/hauptmenue auch beim scrollen sichtbar bleibt, wird fixiert*/
+		border: 1px solid #DDD; /*beschreibt die Breite und Farbe der Border*/
+		box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+		/*gibt der Box einen Hervorhebungseffekt durch einen transparenten Schatten*/
+		width: 50%;
+	}
+
+#Anmeldebereich { /* Anmeldebereich */
+	width: 40%;
+	margin-bottom: 5em;
+	display: block;
+	margin: 5%;
+	padding-left: 15%;
+	padding-right: 15%;
+}
+
+legend {
+	text-align: center;
+}
+div {
+	margin-left: 25%;
+	margin-right: 25%;
+}
+fieldset {
+	
+	background: #FFFFFF;
+	padding-left: 15%;
+	padding-right: 15%;
+	margin: 5%;
+}
+
+* {
+	display: block;
+	vertical-align: top
+}
+
+input[type="radio"], input[type="checkbox"], label {
+	display: inline;
+}
+
+label::after {
+	content: "";
+	display: block;
+}
+
+
+
+a {
+	color: #FFFFFF; /*macht das die links nicht mehr blau sind*/
+	text-decoration: none;
+}
+
+a
+:hover /*wirkt bei "Beruehrung"*/ {
+	color: #FFA1B0;
+	/*beschreibt die Farbe der Links, wenn man mit dem Curser ueber sie faehrt*/
+}
+
+footer>img {
+	float: left;
+	background-color: #FFA1B0;
+	text-align: center;
+}
+
+
+/*Responsive Design*/
+
+/*Smartphone*/
+@media screen and (min-width: 500px) {
+	#eis {
+		width: 60%;
+		margin: 2%;
+		margin-top: 5%;
+		text-align: center;
+		padding-left: 15%;
+		padding-right: 15%;
+	}
+
+	}
+	nav {
+		padding: 1%;
+		text-align: center;
+	}
+}
+/*Tablet Portraet*/
+@media screen and (min-width: 768px) {
+	#eis {
+		width: 70%;
+	}
+
+	/*Desktop*/
+	@media screen and (min-width: 1024px) {
+		#eis {
+			width: 50%;
+		}
+	}
+}
